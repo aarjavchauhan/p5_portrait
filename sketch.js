@@ -10,20 +10,14 @@ function setup() {
 
 function draw() {
    background(256)
-   draw_front_wheel()
-   draw_rear_wheel()
 
-}
+   //front wheel
+   draw_wheel(150, 350)
 
-function draw_front_wheel() {
-   push()
-   translate(150, 350)
-   //outer wheel
-   circle(0, 0, 110)
-   //inner wheel
-   circle(0, 0, wheel_diameter)
-   draw_spokes()
-   pop()
+   //back wheel
+   draw_wheel(350, 350)
+
+   draw_pedal()
 }
 
 function draw_spokes()
@@ -42,16 +36,24 @@ function draw_spokes()
     rotate(60)
     rect(50, 5, 5, 5, 20)
   }
-   spoke_angle++
+  spoke_angle++
 }
 
-function draw_rear_wheel() {
-   push()
-   translate(350, 350)
-   //outer wheel
-   circle(0, 0, 110)
-   //inner wheel
-   circle(0, 0, wheel_diameter)
-   draw_spokes()
-   pop()
+function draw_wheel(translate_x, translate_y) {
+  push()
+  translate(translate_x, translate_y)
+  //outer tyre
+  circle(0, 0, 110)
+  //inner tyre
+  circle(0, 0, wheel_diameter)
+  draw_spokes()
+  pop()
+}
+
+function draw_pedal()
+{
+  push()
+  translate(225, 350)
+  circle(0, 0, 30)
+  pop()
 }
