@@ -12,7 +12,7 @@ function draw() {
    background(256)
    draw_front_wheel()
    draw_rear_wheel()
-   spoke_angle++
+
 }
 
 function draw_front_wheel() {
@@ -23,18 +23,26 @@ function draw_front_wheel() {
    //inner wheel
    circle(0, 0, wheel_diameter)
    draw_spokes()
-   rect(50, 5, 5, 5, 20)
    pop()
 }
 
 function draw_spokes()
 {
+  //spokes
   rotate(spoke_angle)
   line(0,0, 50, 0)
   for (var i = 15; i < 360; i+=15) {
     rotate(15)
     line(0,0, 50, 0)
   }
+
+  //aura lights
+  rect(50, 5, 5, 5, 20)
+  for (var i = 60; i < 360; i+=60) {
+    rotate(60)
+    rect(50, 5, 5, 5, 20)
+  }
+   spoke_angle++
 }
 
 function draw_rear_wheel() {
