@@ -4,7 +4,7 @@ let pedal_angle = 0
 let foot_angle = 0
 let wheel_radius = 50
 let wheel_diameter = wheel_radius*2
-let front_wheel = {centerX : 350, centerY: 350}
+let front_wheel = {centerX : 330, centerY: 350}
 let rear_wheel = {centerX : 150, centerY: 350}
 
 function setup() {
@@ -74,11 +74,27 @@ function draw_pedal()
 
 function draw_frame()
 {
+  //handle bar
+  push()
+  translate(293, 243)
+  rotate(-10)
+  rect(-2, -2.5, 8, 1.5)
+  pop()
+  push()
+  translate(305, 239)
+  circle(0, 0, 7)
+  pop()
+  push()
+  translate(300, 240)
+  circle(0, 0, 8)
+  pop()
+
+
   //upper frame connecting front and rear wheels
   push()
   translate(202, 260)
   rotate(-5)
-  rect(0, 0, 110, 5)
+  rect(0, 0, 95, 5)
   pop()
 
   //frame from pedal
@@ -88,7 +104,7 @@ function draw_frame()
   rect(0, 1, 108, 3.5)
   rect(0, 0, 103, 5)
   rotate(65)
-  rect(0, 0, 125, 5)
+  rect(0, 0, 105, 5)
   pop()
 
   //frame from front wheel
@@ -96,6 +112,7 @@ function draw_frame()
   translate(front_wheel.centerX, front_wheel.centerY)
   circle(0, 0, 15)
   rotate(-110)
+  rect(-2.5, -1.5, 120, 3)
   rect(-2.5, -2.5, 115, 5)
   pop()
 
@@ -127,4 +144,11 @@ function draw_frame()
 
   circle(0, 0, 3)
   pop()
+
+  //seat
+  push()
+  translate(197, 253)
+  rect(-15, -5, 30, 5, 15)
+  pop()
+
 }
