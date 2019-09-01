@@ -9,6 +9,7 @@ let rear_wheel = {centerX : 150, centerY: 350}
 let bicycle_color = {r : 21, g: 124, b: 248}
 
 
+
 function setup() {
   createCanvas(500, 500)
   angleMode(DEGREES)
@@ -16,8 +17,10 @@ function setup() {
 }
 
 function draw() {
-   background(255, 0, 0)
-
+  background(255, 0, 0)
+  var blue_sky = color(0, 0, 153)
+  var red_sky = color(204, 51, 0)
+ setGradient(0,0, 500, 500, blue_sky, red_sky, "X")
 
    draw_scenery()
 
@@ -46,6 +49,8 @@ function draw_scenery()
   triangle(460, 170, 500, 275, 400, 250)
   triangle(430, 138, 500, 275, 400, 250)
   rect(0, 275, 500, 225)
+  fill(255)
+  triangle(176, 103, 240, 40, 314, 107)
   pop()
 }
 
@@ -67,6 +72,7 @@ function draw_bicycle()
 function draw_spokes(translate_x, translate_y)
 {
   push()
+  stroke(0.5)
   translate(translate_x, translate_y)
   //spokes
   rotate(spoke_angle)
@@ -91,9 +97,8 @@ function draw_spokes(translate_x, translate_y)
 function draw_wheel(translate_x, translate_y) {
   push()
   translate(translate_x, translate_y)
-  noFill()
   //outer tyre
-//  circle(0, 0, 110)
+  stroke(0)
   strokeWeight(6)
   //inner tyre
   circle(0, 0, wheel_diameter)
@@ -219,4 +224,23 @@ function draw_frame()
   pop()
 
   pop()
+}
+
+function setGradient(x, y, w, h, c1, c2, axis) {
+  noFill();  if (axis == "Y") {  // Top to bottom gradient
+    for (let i = y; i <= y+h; i++) {
+      var inter = map(i, y, y+h, 0, 1);
+      var c = lerpColor(c1, c2, inter);
+      stroke(c);
+      line(x, i, x+w, i);
+    }
+  }
+  else if (axis == "X") {  // Left to right gradient
+    for (let j = x; j <= x+w; j++) {
+      var inter2 = map(j, x, x+w, 0, 1);
+      var d = lerpColor(c1, c2, inter2);
+      stroke(d);
+      line(j, y, j, y+h);
+    }
+  }
 }
