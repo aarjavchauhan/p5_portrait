@@ -14,17 +14,47 @@ function setup() {
 }
 
 function draw() {
-   background(256)
+   background(255, 0, 0)
 
-   //back wheel
-   draw_wheel(rear_wheel.centerX, rear_wheel.centerY)
-   //front wheel
-   draw_wheel(front_wheel.centerX, front_wheel.centerY)
 
-   draw_frame()
+   draw_scenery()
 
-   draw_pedal();
+   draw_bicycle()
+   draw_border()
    console.log(mouseX, mouseY)
+}
+
+function draw_border()
+{
+  push()
+  stroke(255, 204, 0)
+  strokeWeight(20)
+  noFill()
+  rect(0, 0, 500, 500)
+  pop()
+}
+
+function draw_scenery()
+{
+  push()
+  noStroke()
+  fill(88, 178, 38)
+  triangle(0, 275, 240, 10, 500, 275)
+  triangle(0, 275, 42, 183, 100, 270)
+  rect(0, 275, 500, 225)
+  pop()
+}
+
+function draw_bicycle()
+{
+  //back wheel
+  draw_wheel(rear_wheel.centerX, rear_wheel.centerY)
+  //front wheel
+  draw_wheel(front_wheel.centerX, front_wheel.centerY)
+
+  draw_frame()
+
+  draw_pedal()
 }
 
 function draw_spokes()
