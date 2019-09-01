@@ -73,14 +73,15 @@ function draw_border()
 function draw_scenery()
 {
   push()
+  colorMode(HSB);
   noStroke()
-  fill(88, 178, 38)
+  fill(90, 79, map(mouseX, 0, 500, 70, 35))
   triangle(0, 275, 240, 40, 500, 275)
   triangle(0, 275, 42, 183, 100, 270)
   triangle(460, 170, 500, 275, 400, 250)
   triangle(430, 138, 500, 275, 400, 250)
   rect(0, 275, 500, 225)
-  fill(map(mouseX, 0, 500, 255, 130))
+  fill(0, 0, map(mouseX, 0, 500, 100, 45))
   triangle(173, 104, 240, 40, 315, 107)
   pop()
 }
