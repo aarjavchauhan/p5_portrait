@@ -49,16 +49,21 @@ function draw_bicycle()
 {
   //back wheel
   draw_wheel(rear_wheel.centerX, rear_wheel.centerY)
+  draw_spokes(rear_wheel.centerX, rear_wheel.centerY)
+
   //front wheel
   draw_wheel(front_wheel.centerX, front_wheel.centerY)
+  draw_spokes(front_wheel.centerX, front_wheel.centerY)
 
   draw_frame()
 
   draw_pedal()
 }
 
-function draw_spokes()
+function draw_spokes(translate_x, translate_y)
 {
+  push()
+  translate(translate_x, translate_y)
   //spokes
   rotate(spoke_angle)
   line(0,0, 50, 0)
@@ -68,22 +73,25 @@ function draw_spokes()
   }
 
   //aura lights
-  rect(45, 5, 5, 5, 20)
+  rect(42, 5, 5, 5, 20)
   for (var i = 60; i < 360; i+=60) {
     rotate(60)
-    rect(45, 5, 5, 5, 20)
+    rect(42, 2, 5, 5, 20)
   }
   spoke_angle++
+  pop()
 }
 
 function draw_wheel(translate_x, translate_y) {
   push()
   translate(translate_x, translate_y)
+  noFill()
   //outer tyre
-  circle(0, 0, 110)
+//  circle(0, 0, 110)
+  strokeWeight(6)
   //inner tyre
   circle(0, 0, wheel_diameter)
-  draw_spokes()
+//  draw_spokes()
   pop()
 }
 
