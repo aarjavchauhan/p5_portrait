@@ -7,16 +7,21 @@ let wheel_diameter = wheel_radius*2
 let front_wheel = {centerX : 330, centerY: 350}
 let rear_wheel = {centerX : 150, centerY: 350}
 let bicycle_color = {r : 21, g: 124, b: 248}
-
+var stars = [];
 
 
 function setup() {
   createCanvas(500, 500)
   angleMode(DEGREES)
+
+  for (var i = 0; i < 50; i++) {
+    stars.push(new Star());
+}
 }
 
 function draw() {
   background(204, 51, 0)
+
 
   draw_sky()
 
@@ -27,13 +32,32 @@ function draw() {
   console.log(mouseX, mouseY)
 }
 
-function draw_sky()
-{
-  push()
-  var blue_sky = color(0, 0, 153)
-  var red_sky = color(204, 51, 0)
-  setGradient(0,0, 500, 500, blue_sky, red_sky, "X")
-  pop()
+  function draw_sky()
+  {
+    push()
+    var blue_sky = color(0, 0, 153)
+    var red_sky = color(204, 51, 0)
+
+    setGradient(0,0, map(mouseX, 0, 500, 0, 1000), 500, blue_sky, red_sky, "X")
+
+      for (var i = 0; i < 50; i++) {
+        if (stars[i].x <= mouseX) {
+          stars[i].draw();
+        }
+      }
+    pop()
+  }
+
+function Star() {
+  this.x = random(500);
+  this.y = random(300);
+}
+Star.prototype.draw = function() {
+  noStroke();
+  fill(255, 255, 0);
+  ellipse(this.x, this.y, 2, 2)
+  this.x += (random(2) - 1);
+  this.y += (random(2) - 1);
 }
 
 function draw_border()
@@ -97,7 +121,7 @@ function draw_spokes(translate_x, translate_y)
     rotate(60)
     rect(42, 2, 5, 5, 20)
   }
-  spoke_angle++
+  spoke_angle += map(mouseX, 0, 500, 0, 20)
   pop()
 }
 
@@ -130,7 +154,7 @@ function draw_pedal()
   fill(0)
   line(0,0, 12.5, 0)
   rect(12.5, -2.5, 15, 5, 10)
-  pedal_angle += 2
+  pedal_angle += map(mouseX, 0, 500, 0, 20)
   circle(0, 0, 5)
   pop()
 }
