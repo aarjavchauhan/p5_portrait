@@ -20,7 +20,7 @@ function setup() {
 }
 
 function draw() {
-  background(204, 51, 0)
+  background(50, 153, 204)
 
 
   draw_sky()
@@ -35,10 +35,10 @@ function draw() {
   function draw_sky()
   {
     push()
-    var blue_sky = color(0, 0, 153)
-    var red_sky = color(204, 51, 0)
+    var night_sky = color(30, 52, 102)
+    var day_sky = color(50, 153, 204)
 
-    setGradient(0,0, map(mouseX, 0, 500, 0, 1000), 500, blue_sky, red_sky, "X")
+    setGradient(0,0, map(mouseX, 0, 500, 0, 1000), 500, night_sky, day_sky, "X")
 
       for (var i = 0; i < 50; i++) {
         if (stars[i].x <= mouseX) {
@@ -80,8 +80,8 @@ function draw_scenery()
   triangle(460, 170, 500, 275, 400, 250)
   triangle(430, 138, 500, 275, 400, 250)
   rect(0, 275, 500, 225)
-  fill(255)
-  triangle(176, 103, 240, 40, 314, 107)
+  fill(map(mouseX, 0, 500, 255, 130))
+  triangle(173, 104, 240, 40, 315, 107)
   pop()
 }
 
