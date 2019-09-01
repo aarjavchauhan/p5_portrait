@@ -4,27 +4,27 @@ let pedal_angle = 0
 let foot_angle = 0
 let wheel_radius = 50
 let wheel_diameter = wheel_radius*2
-
+let front_wheel = {centerX : 350, centerY: 350}
+let rear_wheel = {centerX : 150, centerY: 350}
 
 function setup() {
   createCanvas(500, 500)
   angleMode(DEGREES)
+
 }
 
 function draw() {
    background(256)
 
    //back wheel
-   draw_wheel(150, 350)
+   draw_wheel(rear_wheel.centerX, rear_wheel.centerY)
+   //front wheel
+   draw_wheel(front_wheel.centerX, front_wheel.centerY)
 
    draw_frame()
 
-   draw_pedal()
-
-   //front wheel
-   draw_wheel(350, 350)
-
-
+   draw_pedal();
+   console.log(mouseX, mouseY)
 }
 
 function draw_spokes()
@@ -65,8 +65,8 @@ function draw_pedal()
   circle(0, 0, 30)
   rotate(pedal_angle)
   stroke(0)
-  line(0,0, 20, 0)
-  rect(20, -2.5, 20, 5, 10)
+  line(0,0, 12.5, 0)
+  rect(12.5, -2.5, 15, 5, 10)
   pedal_angle += 2
   circle(0, 0, 5)
   pop()
@@ -74,6 +74,32 @@ function draw_pedal()
 
 function draw_frame()
 {
+  //upper frame connecting front and rear wheels
+  push()
+  translate(202, 260)
+  rotate(-5)
+  rect(0, 0, 110, 5)
+  pop()
+
+  //frame from pedal
+  push()
+  translate(225, 355)
+  rotate(-107)
+  rect(0, 1, 108, 3.5)
+  rect(0, 0, 103, 5)
+  rotate(65)
+  rect(0, 0, 125, 5)
+  pop()
+
+  //frame from front wheel
+  push()
+  translate(front_wheel.centerX, front_wheel.centerY)
+  circle(0, 0, 15)
+  rotate(-110)
+  rect(-2.5, -2.5, 115, 5)
+  pop()
+
+  //frame from rear wheel
   push()
   translate(150, 350)
   circle(0, 0, 20)
@@ -93,7 +119,12 @@ function draw_frame()
   circle(0, 0, 15)
 
   rect(-1.25,-1.25, 75, 2.5, 20)
+
+  push()
+  rotate(-60)
+  rect(-1.25,-1.25, 100, 2.5, 20)
+  pop()
+
   circle(0, 0, 3)
-  circle()
   pop()
 }
