@@ -13,20 +13,27 @@ let bicycle_color = {r : 21, g: 124, b: 248}
 function setup() {
   createCanvas(500, 500)
   angleMode(DEGREES)
-
 }
 
 function draw() {
-  background(255, 0, 0)
+  background(204, 51, 0)
+
+  draw_sky()
+
+  draw_scenery()
+
+  draw_bicycle()
+  draw_border()
+  console.log(mouseX, mouseY)
+}
+
+function draw_sky()
+{
+  push()
   var blue_sky = color(0, 0, 153)
   var red_sky = color(204, 51, 0)
- setGradient(0,0, 500, 500, blue_sky, red_sky, "X")
-
-   draw_scenery()
-
-   draw_bicycle()
-   draw_border()
-   console.log(mouseX, mouseY)
+  setGradient(0,0, 500, 500, blue_sky, red_sky, "X")
+  pop()
 }
 
 function draw_border()
@@ -98,6 +105,7 @@ function draw_wheel(translate_x, translate_y) {
   push()
   translate(translate_x, translate_y)
   //outer tyre
+  noFill()
   stroke(0)
   strokeWeight(6)
   //inner tyre
