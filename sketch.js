@@ -65,7 +65,7 @@ Star.prototype.draw = function() {
 function draw_border()
 {
   push()
-  stroke(255, 204, 0)
+  stroke(48, 100, 100)
   strokeWeight(20)
   noFill()
   rect(0, 0, 500, 500)
@@ -116,7 +116,15 @@ function draw_spokes(translate_x, translate_y)
   }
 
   //aura lights
-  fill(0, 82, 96)
+  if (mouseX < 20) {
+    colorMode(RGB)
+    fill(245, 44, 44, 0)
+  } else if (mouseX < 350) {
+    fill(0, 82, 96)
+  } else {
+    fill(0, 0, 100)
+  }
+
   noStroke()
   rect(42, 5, 5, 5, 20)
   for (var i = 60; i < 360; i+=60) {
