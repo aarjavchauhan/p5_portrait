@@ -51,11 +51,15 @@ function draw_sky()
 
   var sunColor = color(253, 184, 19)
   var sunsetColor = color(204, 0, 0)
-  var sunCenterX = 400
-  var sCenterY = 75
   noStroke()
   fill(lerpColor(sunColor, sunsetColor, map(mouseX, 0, 500, 0, 1)))
   circle(400, map(mouseX, 0, 500, 75, 300), 40)
+
+
+  var moonColor = color(235, 236, 234)
+  var yellowMoon = color(254, 252, 215)
+  fill(lerpColor(sunColor, moonColor, map(mouseX, 0, 500, 0, 1)))
+  arc(map(mouseX, 0, 500, 20, 160), map(mouseX, 0, 500, 300, 75), 30, 30, 90, 270)
 
   pop()
 }
