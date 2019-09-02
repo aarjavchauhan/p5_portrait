@@ -8,6 +8,8 @@ let front_wheel = {centerX : 330, centerY: 350}
 let rear_wheel = {centerX : 150, centerY: 350}
 let bicycle_color = {r : 21, g: 124, b: 248}
 let frame_color = {h : 213, s: 92, b: 97}
+let cloudX1 = 110
+let cloudX2 = 70
 
 var stars = [];
 
@@ -25,8 +27,21 @@ function draw() {
   background(200, 75, 80)
 
   draw_sky()
+  draw_cloud(cloudX1, 110, 0.8)
+  cloudX1 += 0.2
 
   draw_scenery()
+
+  draw_cloud(cloudX2, 153, 0.5)
+  cloudX2 +=1
+  if(cloudX1 > 550)
+  {
+    cloudX1 = -20
+    draw_cloud(cloudX1, 73, 0.8)
+  }else if (cloudX2 > 550) {
+    cloudX2 = -10
+    draw_cloud(cloudX2, 153, 0.5)
+  }
 
   draw_bicycle()
   draw_border()
@@ -64,6 +79,19 @@ function draw_sky()
   pop()
 }
 
+function draw_cloud(cloudX, cloudY, multiplier)
+{
+  push()
+  fill(0, 0, map(mouseX, 0, 500, 100, 35))
+  noStroke()
+  ellipseWidth = 70 * multiplier
+  ellipseHeight = 50 * multiplier
+  ellipse(cloudX, cloudY, ellipseWidth, ellipseHeight)
+  ellipse(cloudX+10, cloudY + 10, ellipseWidth, ellipseHeight)
+  ellipse(cloudX-20, cloudY + 10 , ellipseWidth, ellipseHeight)
+  pop()
+}
+
 function Star() {
   this.x = random(500);
   this.y = random(300);
@@ -96,7 +124,7 @@ function draw_scenery()
   triangle(460, 170, 500, 275, 400, 250)
   triangle(430, 138, 500, 275, 400, 250)
   rect(0, 275, 500, 225)
-  fill(0, 0, map(mouseX, 0, 500, 100, 45))
+  fill(0, 0, map(mouseX, 0, 500, 85, 45))
   triangle(173, 104, 240, 40, 315, 107)
   pop()
 }
