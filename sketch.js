@@ -30,25 +30,35 @@ function draw() {
 
   draw_bicycle()
   draw_border()
+
   console.log(mouseX, mouseY)
 }
 
-  function draw_sky()
-  {
-    push()
-    colorMode(RGB)
-    var night_sky = color(30, 52, 102)
-    var day_sky = color(50, 153, 204)
+function draw_sky()
+{
+  push()
+  colorMode(RGB)
+  var night_sky = color(30, 52, 102)
+  var day_sky = color(50, 153, 204)
 
-    setGradient(0,0, map(mouseX, 0, 500, 0, 1000), 500, night_sky, day_sky, "X")
+  setGradient(0,0, map(mouseX, 0, 500, 0, 1000), 500, night_sky, day_sky, "X")
 
-      for (var i = 0; i < 50; i++) {
-        if (stars[i].x <= mouseX) {
-          stars[i].draw();
-        }
-      }
-    pop()
+  for (var i = 0; i < 50; i++) {
+    if (stars[i].x <= mouseX) {
+      stars[i].draw();
+    }
   }
+
+  var sunColor = color(253, 184, 19)
+  var sunsetColor = color(204, 0, 0)
+  var sunCenterX = 400
+  var sCenterY = 75
+  noStroke()
+  fill(lerpColor(sunColor, sunsetColor, map(mouseX, 0, 500, 0, 1)))
+  circle(400, map(mouseX, 0, 500, 75, 300), 40)
+
+  pop()
+}
 
 function Star() {
   this.x = random(500);
