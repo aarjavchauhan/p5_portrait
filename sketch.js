@@ -1,3 +1,4 @@
+//variables whose value need to be set at a global level
 let angle = 0
 let spoke_angle = 0
 let pedal_angle = 0
@@ -11,9 +12,10 @@ let frame_color = {h : 213, s: 92, b: 97}
 let cloudX1 = 110
 let cloudX2 = 70
 
+//array of stars
 var stars = [];
 
-
+//setup the canvas and store locations of stars
 function setup() {
   createCanvas(500, 500)
   angleMode(DEGREES)
@@ -23,6 +25,7 @@ function setup() {
 }
 }
 
+//draw on the canvas from background to foreground
 function draw() {
   background(200, 75, 80)
 
@@ -45,10 +48,11 @@ function draw() {
 
   draw_bicycle()
   draw_border()
-
-  console.log(mouseX, mouseY)
 }
 
+// create the gradient sky, display stars as mouseX
+// increases, create the setting sun and the rising
+// moon with changing colors
 function draw_sky()
 {
   push()
@@ -79,6 +83,7 @@ function draw_sky()
   pop()
 }
 
+//draw clouds, clouds move in the draw() function
 function draw_cloud(cloudX, cloudY, multiplier)
 {
   push()
@@ -92,10 +97,12 @@ function draw_cloud(cloudX, cloudY, multiplier)
   pop()
 }
 
+//create a star
 function Star() {
   this.x = random(500);
   this.y = random(300);
 }
+//draw stars
 Star.prototype.draw = function() {
   noStroke();
   fill(255, 255, 0);
@@ -104,6 +111,7 @@ Star.prototype.draw = function() {
   this.y += (random(2) - 1);
 }
 
+//draw outer border
 function draw_border()
 {
   push()
@@ -114,6 +122,7 @@ function draw_border()
   pop()
 }
 
+//draw the mountains and scenery
 function draw_scenery()
 {
   push()
@@ -129,6 +138,7 @@ function draw_scenery()
   pop()
 }
 
+//combined function to draw the bicycle
 function draw_bicycle()
 {
   //back wheel
@@ -144,6 +154,8 @@ function draw_bicycle()
   draw_pedal()
 }
 
+//create the spokes of the bicycle wheels and rotate them
+//similarily with the aura lights
 function draw_spokes(translate_x, translate_y)
 {
   push()
@@ -177,6 +189,7 @@ function draw_spokes(translate_x, translate_y)
   pop()
 }
 
+//combined function do draw the wheels
 function draw_wheel(translate_x, translate_y) {
   push()
   translate(translate_x, translate_y)
@@ -190,6 +203,7 @@ function draw_wheel(translate_x, translate_y) {
   pop()
 }
 
+//draw the pedal and rotate it
 function draw_pedal()
 {
   push()
@@ -211,6 +225,7 @@ function draw_pedal()
   pop()
 }
 
+//draw the frame of the bicycle
 function draw_frame()
 {
   push()
@@ -314,6 +329,7 @@ function draw_frame()
   pop()
 }
 
+//p5js example function to create gradients with colors over a length or height
 function setGradient(x, y, w, h, c1, c2, axis) {
   noFill();  if (axis == "Y") {  // Top to bottom gradient
     for (let i = y; i <= y+h; i++) {
